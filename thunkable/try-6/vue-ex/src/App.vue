@@ -12,37 +12,35 @@ const users = [
     pwd: 'rrr'
   },
 ]
-let loggedInState = ref('not logged in')  // 'login error' | 'logged in'
+let loggedInState = ref('не залогинен')  // 'ошибка логина' | 'залогинен'
 const login = useTemplateRef('login')
 const pwd = useTemplateRef('pwd')
 
-function subm() {
-  console.log(login.value.value)
-  console.log(pwd.value.value)
-
+function submit() {
   for (const user of users) {
     if (user.login === login.value.value && user.pwd === pwd.value.value) {
-      loggedInState.value = 'logged in'
-    } else {
-      loggedInState.value = 'login error'
+      loggedInState.value = 'залогинен'
+      return
     }
   }
+
+  loggedInState.value = 'ошибка логина'
 }
 </script>
 
 <template>
   <main class="cont">
-    <form>
+    <form @submit.prevent="submit">
       <p>Логин:</p>
       <input ref="login">
       <p>Пароль:</p>
       <input ref="pwd" type="password">
       <br>
       <br>
-      <button @click="subm" type="submit">Войти ({{ loggedInState }})</button>
+      <button type="submit">Войти ({{ loggedInState }})</button>
     </form>
 
-    <p style="color: green;" v-if="loggedInState === 'logged in'">You are logged in</p>
-    <p style="color: red;" v-if="loggedInState === 'login error'">Ошибка: неверны введены логин и пароль</p>
+    <p style="color: green;" v-if="loggedInState === 'залогинен'">Успех: Вы успешно вошли в систему</p>
+    <p style="color: red;" v-if="loggedInState === 'ошибка логина'">Ошибка: неверны введены логин и пароль</p>
   </main>
 </template>
