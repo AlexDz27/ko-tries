@@ -1,46 +1,45 @@
 <script setup>
 import { ref, useTemplateRef } from 'vue'
-import Card from './components/Card.vue'
 
-const users = [
+const пользователи = [
   {
-    login: 'alex',
-    pwd: 'zxc'
+    логин: 'Оля',
+    пароль: 'ol'
   },
   {
-    login: 'rain',
-    pwd: 'rrr'
+    логин: 'Вася',
+    пароль: 'vas'
   },
 ]
-let loggedInState = ref('не залогинен')  // 'ошибка логина' | 'залогинен'
-const login = useTemplateRef('login')
-const pwd = useTemplateRef('pwd')
+let состояниеЛогина = ref('не залогинен')  // 'ошибка логина' | 'залогинен'
+const логин = useTemplateRef('login')
+const пароль = useTemplateRef('pwd')
 
-function submit() {
-  for (const user of users) {
-    if (user.login === login.value.value && user.pwd === pwd.value.value) {
-      loggedInState.value = 'залогинен'
+function залогинить() {
+  for (const пользователь of пользователи) {
+    if (пользователь.логин === логин.value.value && пользователь.пароль === пароль.value.value) {
+      состояниеЛогина.value = 'залогинен'
       return
     }
   }
 
-  loggedInState.value = 'ошибка логина'
+  состояниеЛогина.value = 'ошибка логина'
 }
 </script>
 
 <template>
   <main class="cont">
-    <form @submit.prevent="submit">
+    <form @submit.prevent="залогинить">
       <p>Логин:</p>
       <input ref="login">
       <p>Пароль:</p>
       <input ref="pwd" type="password">
       <br>
       <br>
-      <button type="submit">Войти ({{ loggedInState }})</button>
+      <button type="submit">Войти ({{ состояниеЛогина }})</button>
     </form>
 
-    <p style="color: green;" v-if="loggedInState === 'залогинен'">Успех: Вы успешно вошли в систему</p>
-    <p style="color: red;" v-if="loggedInState === 'ошибка логина'">Ошибка: неверны введены логин и пароль</p>
+    <p style="color: green;" v-if="состояниеЛогина === 'залогинен'">Успех: Вы успешно вошли в систему</p>
+    <p style="color: red;" v-if="состояниеЛогина === 'ошибка логина'">Ошибка: неверно введены логин и пароль</p>
   </main>
 </template>
