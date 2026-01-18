@@ -14,7 +14,7 @@ function colorMod3Numbers(paragraph) {
     
     const coloredHTML = numbers.map(num => {
         const number = parseInt(num.trim());
-        if (number % 3 === 0) {
+        if (number % 15 === 0) {
             return `<span style="color: blue;">${number}</span>`;
         }
         return number.toString();
@@ -26,12 +26,12 @@ function colorMod3Numbers(paragraph) {
 
 <template>
   <main class="main cont">
-    <section class="section" style="margin-bottom: 4.5rem">
+    <section class="section" style="margin-bottom: 4.5rem; text-align: center;">
       <p>1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30</p>
 
-      <!-- <hr>
+      <hr>
 
-      <p ref="the-p">1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30</p> -->
+      <p ref="the-p">1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30</p>
     </section>
   </main>
 </template>
