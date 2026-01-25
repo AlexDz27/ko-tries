@@ -14,7 +14,7 @@ function colorMod3Numbers(paragraph) {
     
     const coloredHTML = numbers.map(num => {
         const number = parseInt(num.trim());
-        if (number % 15 === 0) {
+        if (number % 3 === 0) {
             return `<span style="color: blue;">${number}</span>`;
         }
         return number.toString();
